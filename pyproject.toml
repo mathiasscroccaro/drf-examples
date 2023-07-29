@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "drf-examples"
+version = "0.1.0"
+description = ""
+authors = ["Mathias <mathias.scroccaro@gmail.com>"]
+readme = "README.md"
+packages = [{include = "drf_examples"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
