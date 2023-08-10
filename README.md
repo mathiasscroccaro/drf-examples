@@ -8,15 +8,15 @@ If you need specific code, search for a corresponding branch.
 
 ## Start a new project
 
-You can run `django-admin startproject app` to create a new project.
+You can run `django-admin startproject app .` to create a new project.
 
-For instance, if you run in the current directory, it'll be created a project struct as shown in the `app` folder of the current directory.
+For instance, if you run in the current directory, it'll be created a project struct as we have here in the root.
 
 ## Start a new app
 
-Go into the project folder. Run the command `python3 manage.py startapp <myapp>` to create a new app. In the current example, we will create a new app called 'user'
+Run the command `python3 manage.py startapp <myapp>` to create a new app. In the current example, we will create a new app called 'user'
 
-After that, you need to include the app name in the INSTALLED_APPS list, inside the `app/app/settings.py`
+After that, you need to include the app name in the INSTALLED_APPS list, inside the `app/settings.py`
 
 ## Creating the Migrations files
 
