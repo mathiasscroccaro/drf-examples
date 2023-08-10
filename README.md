@@ -25,3 +25,15 @@ If you have any change in the django models, you'll need to create migration fil
 ## Applying the migration files
 
 You can apply the migrations with the command `python3 manage.py migrate`
+
+## Run the project
+
+`poetry run python3 manage.py runserver`
+
+## Run the project with gunicorn
+
+```
+poetry add gunicorn
+poetry run gunicorn app.wsgi
+```
+
