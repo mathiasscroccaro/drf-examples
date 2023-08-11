@@ -36,4 +36,3 @@ You can apply the migrations with the command `python3 manage.py migrate`
 poetry add gunicorn
 poetry run gunicorn app.wsgi
 ```
-
