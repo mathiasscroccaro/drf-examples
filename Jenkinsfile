@@ -1,7 +1,9 @@
 podTemplate(containers: [
     containerTemplate(
         name: 'python', 
-        image: 'python:3.10-slim'
+        image: 'python:3.10-slim',
+        command: 'sleep',
+        args: '30d'
         )
   ]) {
 
