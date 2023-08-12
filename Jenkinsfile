@@ -1,7 +1,7 @@
 podTemplate(containers: [
     containerTemplate(
         name: 'python', 
-        image: 'python3.9:alpine'
+        image: 'python:3.10-slim'
         )
   ]) {
 
