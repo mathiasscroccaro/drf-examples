@@ -12,6 +12,7 @@ podTemplate(containers: [
                     sh '''
                     echo "Hello! I am executing shell"
                     '''
+                    containerLog 'python'
                 }
             }
         }
