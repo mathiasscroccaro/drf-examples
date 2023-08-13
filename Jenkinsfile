@@ -11,13 +11,11 @@ podTemplate(containers: [
         stage('Get a Python project') {
             git url: 'https://github.com/mathiasscroccaro/drf-examples.git', branch: 'main'
             container('python') {
-                stage('Shell Execution') {
-                    sh '''
-                    echo "Hello! I am executing shell"
-                    '''
-                    sh 'python --version'
-                    sh 'ls -la'
-                    containerLog 'python'
+                stage('Install dependencies') {
+                    sh 'pip install -r requirements-dev.txt'
+                }
+                stage('Run unittests') {
+                    sh 'python manage.py test'
                 }
             }
         }
