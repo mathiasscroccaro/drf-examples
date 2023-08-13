@@ -9,7 +9,7 @@ podTemplate(containers: [
 
     node(POD_LABEL) {
         stage('Get a Python project') {
-            git url: 'https://github.com/mathiasscroccaro/drf-examples.git', branch: 'main'
+            git url: 'https://github.com/mathiasscroccaro/drf-examples.git', branch: '4-create-jenkinsfile'
             container('python') {
                 stage('Install dependencies') {
                     sh 'pip install -r requirements-dev.txt'
