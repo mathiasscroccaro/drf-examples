@@ -9,6 +9,7 @@ podTemplate(containers: [
 
     node(POD_LABEL) {
         stage('Get a Python project') {
+            git 'https://github.com/mathiasscroccaro/drf-examples.git'
             container('python') {
                 stage('Shell Execution') {
                     sh '''
