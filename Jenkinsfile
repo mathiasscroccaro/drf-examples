@@ -34,7 +34,10 @@ podTemplate(containers: [
                 stage('Build image and push to registry') {
                     sh 'ls -la'
                     sh 'pwd'
-                    sh '/kaniko/executor --insecure --dockerfile `pwd`/Dockerfile --context `pwd` --destination "registry.container-registry:5000/drf-example"'
+                    sh '''
+                    /kaniko/executor --insecure --dockerfile `pwd`/Dockerfile --context `pwd` \
+                    --destination "registry.container-registry:5000/drf-example:latest"
+                    '''
                 }
             }
         }
