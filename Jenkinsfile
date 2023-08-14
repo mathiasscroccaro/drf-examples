@@ -32,7 +32,7 @@ podTemplate(containers: [
             git url: gitUrl, branch: gitBranch
             container('kaniko') {
                 stage('Build image and push to registry') {
-                    sh '/kaniko/executor --insecure --dockerfile "Dockerfile" --destination "localhost:32000/drf-example"'
+                    sh '/kaniko/executor --insecure --dockerfile "Dockerfile" --destination "localhost:30000/drf-example"'
                 }
             }
         }
