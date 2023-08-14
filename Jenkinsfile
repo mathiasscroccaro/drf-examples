@@ -10,7 +10,7 @@ podTemplate(containers: [
     ),
     containerTemplate(
         name: 'kaniko', 
-        image: 'gcr.io/kaniko-project/executor',
+        image: 'gcr.io/kaniko-project/executor:v1.9.0-debug',
         command: 'sleep',
         args: '30d'
     )
