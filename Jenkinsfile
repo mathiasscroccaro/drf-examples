@@ -17,17 +17,17 @@ podTemplate(containers: [
   ]) {
 
     node(POD_LABEL) {
-        // stage('Test') {
-        //     git url: gitUrl, branch: gitBranch
-        //     container('python') {
-        //         stage('Install dependencies') {
-        //             sh 'pip install -r requirements-dev.txt'
-        //         }
-        //         stage('Run unittests') {
-        //             sh 'python manage.py test'
-        //         }
-        //     }
-        // }
+        stage('Test') {
+            git url: gitUrl, branch: gitBranch
+            container('python') {
+                stage('Install dependencies') {
+                    sh 'pip install -r requirements-dev.txt'
+                }
+                stage('Run unittests') {
+                    sh 'python manage.py test'
+                }
+            }
+        }
         stage('Build') {
             git url: gitUrl, branch: gitBranch
             container('kaniko') {
