@@ -17,6 +17,13 @@ spec:
           image: localhost:32000/drf-example
           ports:
             - containerPort: 8000
+          volumeMounts:
+            - name: drf-example-volume
+              mountPath: /mnt
+      volumes:
+        - name: drf-example-volume
+          persistentVolumeClaim:
+            claimName: drf-example-hdd
 
 ---
 apiVersion: v1
@@ -49,3 +56,12 @@ spec:
                 name: drf-example
                 port:
                   number: 80
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: drf-example-hdd
+spec:
+  storageClassName: external-hdd-hostpath
+  accessModes: [ReadWriteOnce]
+  resources: { requests: { storage: 1Gi } }
