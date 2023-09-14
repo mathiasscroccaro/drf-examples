@@ -1,5 +1,5 @@
 def gitUrl = 'https://github.com/mathiasscroccaro/drf-examples.git'
-def gitBranch = '4-create-jenkinsfile'
+def gitBranch = '6-create-k8s-manifest'
 
 podTemplate(containers: [
     containerTemplate(
