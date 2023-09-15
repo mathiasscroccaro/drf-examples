@@ -43,6 +43,8 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Script-Name /drf-example;
   name: drf-example-ingress
 spec:
   rules:
