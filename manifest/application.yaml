@@ -44,7 +44,13 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header X-Script-Name /drf-example;
+      location /drf-example {
+            proxy_pass app.mathias.dev.br/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Script-Name /drf-example;
+            proxy_cookie_path / /drf-example;
+        }
   name: drf-example-ingress
 spec:
   rules:
