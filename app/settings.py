@@ -32,7 +32,7 @@ ENVIRONMENT = os.getenv("ENVIRONMENT", "production").lower()
 ALLOWED_HOSTS = ['*'] if ENVIRONMENT == "test" else ['app.mathias.dev.br']
 
 # Forces django to not strip the /drf-example from the URI
-FORCE_SCRIPT_NAME = '/example/'
+FORCE_SCRIPT_NAME = '/drf-example/'
 
 # Application definition
 
@@ -123,7 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "example/static/"
+STATIC_URL = "drf-example/static/"
 
 STATIC_ROOT = "/mnt/static"
 
