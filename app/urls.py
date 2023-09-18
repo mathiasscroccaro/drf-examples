@@ -16,15 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 from django.urls import re_path
 from django.contrib.staticfiles import views
-
-
-from django.http import HttpResponse
-
-def hello_django(request):
-    return HttpResponse("Hello, Django!")
 
 
 urlpatterns = [
@@ -32,5 +26,3 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     re_path(r"^static/(?P<path>.*)$", views.serve),
 ]
-
-urlpatterns += staticfiles_urlpatterns()
