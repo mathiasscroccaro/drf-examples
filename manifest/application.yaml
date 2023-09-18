@@ -49,7 +49,7 @@ spec:
     - host: app.mathias.dev.br
       http:
         paths:
-          - path: /drf-example(/|$)(.*)
+          - path: /example(/|$)(.*)
             pathType: Prefix
             backend:
               service:
