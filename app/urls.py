@@ -17,6 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+
+from django.http import HttpResponse
+
+def hello_django(request):
+    return HttpResponse("Hello, Django!")
+
+
 urlpatterns = [
+    path('hello/', views.hello_django, name='hello_django'),
     path("admin/", admin.site.urls),
 ]
