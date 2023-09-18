@@ -25,6 +25,6 @@ def hello_django(request):
 
 
 urlpatterns = [
-    path('hello/', views.hello_django, name='hello_django'),
+    path('hello/', hello_django, name='hello_django'),
     path("admin/", admin.site.urls),
 ]
