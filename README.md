@@ -36,3 +36,28 @@ You can apply the migrations with the command `python3 manage.py migrate`
 poetry add gunicorn
 poetry run gunicorn app.wsgi
 ```
+
+## How to add the application to k8s, using subdirectory
+
+Let's pretend we are hosting in the `/my-custom-app/` subdirectory
+
+1. Add the content to the file `app/settings.py`
+
+```
+STATIC_URL = "/my-custom-app/static/"
+FORCE_SCRIPT_NAME = '/my-custom-app/'
+```
+
+2. Add the static URL patterns to the urlpatterns configuration variable
+
+```
+from django.contrib.staticfiles import views
+from django.urls import re_path
+
+
+urlpatterns += [
+    re_path(r"^static/(?P<path>.*)$", views.serve),
+]
+```
+
+3. Configure K8s ingress to rewrite the URL target, using nginx annotation `nginx.ingress.kubernetes.io/rewrite-target`

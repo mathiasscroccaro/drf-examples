@@ -1,5 +1,5 @@
 def gitUrl = 'https://github.com/mathiasscroccaro/drf-examples.git'
-def gitBranch = '4-create-jenkinsfile'
+def gitBranch = '6-create-k8s-manifest'
 
 podTemplate(containers: [
     containerTemplate(
@@ -17,17 +17,17 @@ podTemplate(containers: [
   ]) {
 
     node(POD_LABEL) {
-        stage('Test') {
-            git url: gitUrl, branch: gitBranch
-            container('python') {
-                stage('Install dependencies') {
-                    sh 'pip install -r requirements-dev.txt'
-                }
-                stage('Run unittests') {
-                    sh 'python manage.py test'
-                }
-            }
-        }
+        // stage('Test') {
+        //     git url: gitUrl, branch: gitBranch
+        //     container('python') {
+        //         stage('Install dependencies') {
+        //             sh 'pip install -r requirements-dev.txt'
+        //         }
+        //         stage('Run unittests') {
+        //             sh 'python manage.py test'
+        //         }
+        //     }
+        // }
         stage('Build') {
             git url: gitUrl, branch: gitBranch
             container('kaniko') {
