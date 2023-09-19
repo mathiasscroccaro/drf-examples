@@ -33,6 +33,8 @@ ALLOWED_HOSTS = ['*'] if ENVIRONMENT == "test" else ['app.mathias.dev.br']
 
 # Forces django to not strip the /drf-example from the URI
 FORCE_SCRIPT_NAME = '/drf-example/'
+AUTH_USER_MODEL = 'user.User'
+
 
 # Application definition
 
