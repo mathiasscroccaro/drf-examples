@@ -12,17 +12,20 @@ from user.serializers import (
     SessionLoginSerializer,
 )
 
+from utils.permissions import IsStaff
+
 
 class CreateUserView(generics.CreateAPIView):
     """Create a new user in the system."""
     serializer_class = UserSerializer
+    permission_classes = [IsStaff]
 
 
 class ManageUserView(generics.RetrieveUpdateAPIView):
     """Manage the authenticated user."""
     serializer_class = UserSerializer
-    # authentication_classes = [authentication.TokenAuthentication]
-    # permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
         """Retrieve and return the authenticated user."""
@@ -35,7 +38,7 @@ class SessionLoginView(APIView):
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            username = serializer.validated_data['username']
+            username = serializer.validated_data['email']
             password = serializer.validated_data['password']
             user = authenticate(username=username, password=password)
             
