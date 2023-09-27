@@ -13,26 +13,33 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 
 from pathlib import Path
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+ENVIRONMENT = os.getenv("ENVIRONMENT", "production").lower()
+SECRET_KEY = os.getenv(
+    "SECRET_KEY", "django-insecure-rea737u@x32c407xat!2a0&@i!in5s0hw=qw!8qv^vy#wi%!6q"
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-rea737u@x32c407xat!2a0&@i!in5s0hw=qw!8qv^vy#wi%!6q"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ENVIRONMENT = os.getenv("ENVIRONMENT", "production").lower()
-
-ALLOWED_HOSTS = ['*'] if ENVIRONMENT == "test" else ['app.mathias.dev.br']
+ALLOWED_HOSTS = ["*"] if ENVIRONMENT == "test" else ["app.mathias.dev.br"]
 
 # Forces django to not strip the /drf-example from the URI
-FORCE_SCRIPT_NAME = '/drf-example/'
+FORCE_SCRIPT_NAME = None if ENVIRONMENT == "test" else "/drf-example/"
+
+# Update to use the user.User as a default user model
+AUTH_USER_MODEL = "user.User"
+
 
 # Application definition
 
@@ -123,9 +130,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/drf-example/static/"
+STATIC_URL = "/static/" if ENVIRONMENT == "test" else "/drf-example/static/"
 
-STATIC_ROOT = "/mnt/static"
+STATIC_ROOT = None if ENVIRONMENT == "test" else "/mnt/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -134,7 +141,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": [
-        "rest_framework.renderers.BrowsableAPIRenderer",
         "rest_framework.renderers.JSONRenderer",
-    ] 
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+    ],
 }
