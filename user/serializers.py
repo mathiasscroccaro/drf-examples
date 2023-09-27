@@ -10,13 +10,14 @@ class UserSerializer(serializers.ModelSerializer):
     """Serializer for the user object."""
 
     password = serializers.CharField(
-        max_length=250, allow_blank=True, write_only=True
+        max_length=250, min_length=5, allow_blank=True, write_only=True
     )
 
     class Meta:
         model = get_user_model()
-        fields = ['email', 'password', 'name']
+        fields = ['email', 'password', 'name', 'is_staff']
         extra_kwargs = {'password': {'write_only': True, 'min_length': 5}}
+        extra_kwargs = {'is_staff': {'read_only': True}}
 
     def create(self, validated_data):
         """Create and return a user with encrypted password."""
@@ -35,5 +36,5 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class SessionLoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
+    email = serializers.CharField()
     password = serializers.CharField()
