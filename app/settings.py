@@ -19,7 +19,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ENVIRONMENT = os.getenv("ENVIRONMENT", "production").lower()
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-rea737u@x32c407xat!2a0&@i!in5s0hw=qw!8qv^vy#wi%!6q")
+SECRET_KEY = os.getenv(
+    "SECRET_KEY", "django-insecure-rea737u@x32c407xat!2a0&@i!in5s0hw=qw!8qv^vy#wi%!6q"
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,13 +32,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] if ENVIRONMENT == "test" else ['app.mathias.dev.br']
+ALLOWED_HOSTS = ["*"] if ENVIRONMENT == "test" else ["app.mathias.dev.br"]
 
 # Forces django to not strip the /drf-example from the URI
-FORCE_SCRIPT_NAME = None if ENVIRONMENT == "test" else '/drf-example/'
+FORCE_SCRIPT_NAME = None if ENVIRONMENT == "test" else "/drf-example/"
 
 # Update to use the user.User as a default user model
-AUTH_USER_MODEL = 'user.User'
+AUTH_USER_MODEL = "user.User"
 
 
 # Application definition
@@ -143,6 +145,6 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.BrowsableAPIRenderer",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        'rest_framework.authentication.SessionAuthentication',
-    ]
+        "rest_framework.authentication.SessionAuthentication",
+    ],
 }

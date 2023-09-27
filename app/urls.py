@@ -9,5 +9,5 @@ from django.contrib.staticfiles import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     re_path(r"^static/(?P<path>.*)$", views.serve),
-    path('user/', include('user.urls')),
+    path("user/", include("user.urls")),
 ]
