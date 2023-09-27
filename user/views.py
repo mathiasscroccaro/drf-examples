@@ -55,6 +55,6 @@ class SessionLoginView(APIView):
 
 
 class SessionLogoutView(APIView):
-    def post(self, request, format=None):
+    def get(self, request, format=None):
         logout(request)
-        return Response({'message': 'Logged out successfully.'})
+        return Response({'message': 'Logged out successfully.'}, status=status.HTTP_200_OK)
